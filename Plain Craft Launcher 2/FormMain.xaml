@@ -1,0 +1,160 @@
+<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:PCL"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    x:Name="WindMain" x:Class="FormMain" Style="{StaticResource MyWindow}"
+    AllowDrop="True" Topmost="True" Title="Plain Craft Launcher Workstation Edition　"
+    AllowsTransparency="True" MinHeight="600" MinWidth="1040"
+    ScrollViewer.VerticalScrollBarVisibility="Disabled"
+    Icon="/Plain Craft Launcher 2;component/Images/icon.ico"
+    WindowStyle="None" ResizeMode="CanMinimize" Background="{x:Null}"
+    d:DesignWidth="1240" d:DesignHeight="760" Width="1180" Height="720"
+    RenderTransformOrigin="0.5,0.5">
+    <Window.TaskbarItemInfo>
+        <TaskbarItemInfo ThumbnailClipMargin="{Binding Margin, ElementName=PanForm}" />
+    </Window.TaskbarItemInfo>
+    <Grid x:Name="PanBack" SnapsToDevicePixels="True" UseLayoutRounding="True" Margin="12" RenderTransformOrigin="0.5,0.5">
+        <Grid.RenderTransform>
+            <TransformGroup>
+                <RotateTransform x:Name="TransformRotate" Angle="0" />
+                <TranslateTransform x:Name="TransformPos" X="0" Y="18" />
+            </TransformGroup>
+        </Grid.RenderTransform>
+        <Rectangle x:Name="ResizerT" Stroke="{x:Null}" StrokeThickness="0.0001" Height="8" VerticalAlignment="Top" Margin="13,0" Cursor="SizeNS" />
+        <Rectangle x:Name="ResizerB" Stroke="{x:Null}" StrokeThickness="0.0001" Height="8" VerticalAlignment="Bottom" Margin="13,0" Cursor="SizeNS" />
+        <Rectangle x:Name="ResizerR" HorizontalAlignment="Right" Margin="0,13" Stroke="{x:Null}" StrokeThickness="0.0001" Width="8" Cursor="SizeWE" />
+        <Rectangle x:Name="ResizerL" HorizontalAlignment="Left" Stroke="{x:Null}" Width="8" Margin="0,13" StrokeThickness="0.0001" Cursor="SizeWE" />
+        <Rectangle x:Name="ResizerLT" HorizontalAlignment="Left" Stroke="{x:Null}" Width="13" StrokeThickness="0.0001" VerticalAlignment="Top" Height="13" Cursor="SizeNWSE" />
+        <Rectangle x:Name="ResizerLB" HorizontalAlignment="Left" Stroke="{x:Null}" Width="13" StrokeThickness="0.0001" VerticalAlignment="Bottom" Height="13" Cursor="SizeNESW" />
+        <Rectangle x:Name="ResizerRB" HorizontalAlignment="Right" Stroke="{x:Null}" Width="13" StrokeThickness="0.0001" VerticalAlignment="Bottom" Height="13" Cursor="SizeNWSE" />
+        <Rectangle x:Name="ResizerRT" HorizontalAlignment="Right" Stroke="{x:Null}" Width="13" StrokeThickness="0.0001" VerticalAlignment="Top" Height="13" Cursor="SizeNESW" />
+
+        <Border Margin="8" x:Name="BorderForm" Background="{DynamicResource AppBackgroundBrush}" BorderBrush="{DynamicResource AppBorderBrush}" BorderThickness="1" CornerRadius="12">
+            <Border.Effect>
+                <DropShadowEffect Color="#2A172033" BlurRadius="28" ShadowDepth="6" Opacity="0.20" />
+            </Border.Effect>
+            <Border.Clip>
+                <RectangleGeometry x:Name="RectForm" RadiusX="12" RadiusY="12" />
+            </Border.Clip>
+            <Grid x:Name="PanForm" SnapsToDevicePixels="False" UseLayoutRounding="False">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="64" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="170" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <Grid.Background>
+                    <SolidColorBrush Color="#F3F5F8" />
+                </Grid.Background>
+
+                <Grid x:Name="PanTitle" Grid.Row="0" Grid.ColumnSpan="2" Height="64" Panel.ZIndex="20" Background="{DynamicResource AppSurfaceBrush}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="170" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" Background="#121A2B">
+                        <Grid x:Name="PanTitleMain" HorizontalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+                            <Border Width="26" Height="26" CornerRadius="6" Background="#2E6BFF" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,8,0">
+                                <Path x:Name="ShapeTitleLogo" Data="M26,29 v-25 h6 a7,7 180 0 1 0,14 h-6 M62.5,6.5 a10,11.5 180 1 0 0,18 M71,2.5 v24.5 h13.5"
+                                      HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="fill"
+                                      Stroke="White" StrokeThickness="2.2" Width="16" Height="18" IsHitTestVisible="False" />
+                            </Border>
+                            <TextBlock x:Name="LabTitleLogo" Visibility="Collapsed" Foreground="White" FontSize="15" FontWeight="SemiBold" VerticalAlignment="Center" Margin="18,0,10,0" IsHitTestVisible="False" />
+                            <local:MyImage x:Name="ImageTitleLogo" Visibility="Collapsed" VerticalAlignment="Center" Margin="12,0,10,0" IsHitTestVisible="False" />
+                            <TextBlock Grid.Column="2" Text="PCL" Foreground="White" FontSize="17" FontWeight="Bold" VerticalAlignment="Center" />
+                        </Grid>
+                    </Border>
+                    <TextBlock Grid.Column="1" Text="Library / Overview" Foreground="{DynamicResource AppTextMutedBrush}"
+                               FontSize="11" FontWeight="SemiBold" Margin="24,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False" />
+                    <Grid x:Name="PanTitleInner" Grid.Column="1" Visibility="Collapsed" Opacity="0" HorizontalAlignment="Left" Width="{Binding ActualWidth, ElementName=PanTitle, Mode=OneWay}">
+                        <local:MyIconButton HorizontalAlignment="Left" Theme="Black" x:Name="BtnTitleInner" Margin="16,0,0,0" Height="32" Width="32" VerticalAlignment="Center"
+                                            LogoScale="0.62" ToolTip="返回"
+                                            Logo="M1097 584 250 584 562 896C591 925 591 972 562 1001 533 1030 487 1030 458 1001L21 565C6 550-0 531 0 511L0 511 0 511C-0 492 6 472 21 457L458 21C487-7 533-7 562 21 591 50 591 97 562 126L250 438 1097 438C1137 438 1170 471 1170 511 1170 551 1137 584 1097 584L1097 584Z" />
+                        <TextBlock Name="LabTitleInner" VerticalAlignment="Center" Margin="58,1,60,0" HorizontalAlignment="Left"
+                                   Foreground="{DynamicResource AppTextBrush}" FontSize="15" FontWeight="SemiBold" IsHitTestVisible="False" />
+                    </Grid>
+                    <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,14,0">
+                        <local:MyIconButton x:Name="BtnTitleMin" Height="32" Width="32" Margin="0,0,2,0" Theme="Black" ToolTip="最小化"
+                                            LogoScale="0.64" Logo="F1 M0,0 h12 v1.4 h-12 v-1.4 Z" />
+                        <local:MyIconButton x:Name="BtnTitleClose" Height="32" Width="32" Theme="Black" ToolTip="关闭"
+                                            LogoScale="0.56" Logo="F1 M2,0 L0,2 8,10 0,18 2,20 10,12 18,20 20,18 12,10 20,2 18,0 10,8 2,0Z" />
+                    </StackPanel>
+                </Grid>
+
+                <Grid x:Name="PanNav" Grid.Row="1" Grid.Column="0" Background="#EEF2F7">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="WORKSPACE" Foreground="{DynamicResource AppTextMutedBrush}" FontSize="10" FontWeight="SemiBold" Margin="18,22,0,10" />
+                    <StackPanel x:Name="PanTitleSelect" Grid.Row="1" Orientation="Vertical" Margin="12,0" VerticalAlignment="Top">
+                        <local:MyRadioButton x:Name="BtnTitleSelect0" Text="启动" Tag="0" Margin="0,3" Padding="12,0" Height="38" HorizontalAlignment="Stretch" Checked="True"
+                                             LogoScale="0.76" ColorType="Nav"
+                                             Logo="M52.1,164.5c-1.4,0-3.1-0.5-4.2-1.3c-2.6-1.7-4-4.2-4-7V43.8c0-2.9,1.6-5.8,4.1-7c1.2-0.8,2.7-1.2,4.1-1.2c1.5,0,2.9,0.4,4.2,1.2L153.1,93c0,0,0.1,0,0.1,0.1c2.6,1.7,4,4.2,4,7c0,3-1.7,5.8-4.2,7.1l-96.8,56.2C55.1,164,53.5,164.5,52.1,164.5z M60.4,142.1l72.1-42.1L60.4,58.2V142.1z" />
+                        <local:MyRadioButton x:Name="BtnTitleSelect1" Text="下载" Tag="1" Margin="0,3" Padding="12,0" Height="38" HorizontalAlignment="Stretch"
+                                             LogoScale="0.76" ColorType="Nav"
+                                             Logo="M955 610h-59c-15 0-29 13-29 29v196c0 15-13 29-29 29h-649c-15 0-29-13-29-29v-196c0-15-13-29-29-29h-59c-15 0-29 13-29 29V905c0 43 35 78 78 78h787c43 0 78-35 78-78V640c0-15-13-29-29-29zM492 740c11 11 29 11 41 0l265-265c11-11 11-29 0-41l-41-41c-11-11-29-11-41 0l-110 110c-11 11-33 3-33-13V68C571 53 555 39 541 39h-59c-15 0-29 13-29 29v417c0 17-21 25-33 13l-110-110c-11-11-29-11-41 0L226 433c-11 11-11 29 0 41L492 740z" />
+                        <local:MyRadioButton x:Name="BtnTitleSelect2" Text="联机" Tag="2" Margin="0,3" Padding="12,0" Height="38" HorizontalAlignment="Stretch"
+                                             LogoScale="0.9" ColorType="Nav"
+                                             Logo="M512 817c-48.601 0-88-39.399-88-88s39.399-88 88-88 88 39.399 88 88-39.399 88-88 88zM237.671 565.74C308.335 474.58 397.369 429 504.774 429c118.433 0 214.225 55.421 287.377 166.264l-53.407 30.369c-13.84 7.87-31.362 4.367-41.114-8.219-50.291-64.911-114.577-97.367-192.856-97.367-86.851 0-156.835 40.318-209.95 120.953l-47.995-28.02c-15.263-8.91-20.412-28.507-11.502-43.77a32 32 0 0 1 2.344-3.47zM107.691 419.47C205.24 278.491 337.805 208 505.379 208c178.77 0 317.694 80.224 416.772 240.672l-56.54 31.73c-13.686 7.68-30.922 4.303-40.697-7.975C735.581 360.213 629.07 303.009 505.38 300.815 373.997 298.485 261.637 362.88 168.3 494l-50.116-28.505c-15.362-8.738-20.732-28.275-11.994-43.637a32 32 0 0 1 1.5-2.387z" />
+                        <local:MyRadioButton x:Name="BtnTitleSelect3" Text="设置" Tag="3" Margin="0,3" Padding="12,0" Height="38" HorizontalAlignment="Stretch"
+                                             LogoScale="0.92" ColorType="Nav"
+                                             Logo="M940.4 463.7L773.3 174.2c-17.3-30-49.2-48.4-83.8-48.4H340.2c-34.6 0-66.5 18.5-83.8 48.4L89.2 463.7c-17.3 30-17.3 66.9 0 96.8L256.4 850c17.3 30 49.2 48.4 83.8 48.4h349.2c34.6 0 66.5-18.5 83.8-48.4l167.2-289.5c17.3-29.9 17.3-66.8 0-96.8z m-94.6 96.8L725.9 768.1c-17.3 30-49.2 48.4-83.8 48.4H387.5c-34.6 0-66.5-18.5-83.8-48.4L183.9 560.5c-17.3-30-17.3-66.9 0-96.8l119.8-207.5c17.3-30 49.2-48.4 83.8-48.4h254.6c34.6 0 66.5 18.5 83.8 48.4l119.8 207.5c17.3 30 17.3 66.9 0.1 96.8z M522.3 321.2c-2.5-0.1-5-0.2-7.5-0.2-119.9 0-214 110.3-186.3 235 15.8 70.9 71.5 126.6 142.4 142.4 17.5 3.9 34.7 5.4 51.4 4.7 102.1-3.9 183.6-87.9 183.6-191 0.1-103-81.5-187-183.6-190.9z m68.6 269.1c-18.5 18-43 28.9-68.6 30.7l-6 0.3c-30.2 0.4-58.6-11.4-79.7-33-19.5-20.1-30.7-47-30.9-75-0.3-29.6 11.1-57.4 32-78.3 20.6-20.6 48-32 77.2-32 2.5 0 5 0.1 7.5 0.3 26.7 1.8 51.5 13.2 70.5 32.5 19.6 20 30.8 46.9 31.2 74.9 0.2 30.2-11.5 58.6-33.2 79.6z" />
+                        <local:MyRadioButton x:Name="BtnTitleSelect4" Text="更多" Tag="4" Margin="0,3" Padding="12,0" Height="38" HorizontalAlignment="Stretch"
+                                             LogoScale="0.8" ColorType="Nav"
+                                             Logo="M364 0h-273C40 0 0 40 0 91v273C0 414 40 455 91 455h273C414 455 455 414 455 364V91C455 40 414 0 364 0zM341 341H113V113h227v227zM933 0h-273C609 0 568 40 568 91v273c0 50 40 91 91 91h273C983 455 1024 414 1024 364V91c0-50-40-91-90-91zM910 341h-227V113h227v227zM364 568h-273C40 568 0 609 0 659v273c0 50 40 91 91 91h273C414 1024 455 983 455 932v-273C455 609 414 568 364 568zM341 910H113v-227h227v227zM933 568h-273c-50 0-91 40-91 91v273c0 50 40 91 91 91h273c50 0 90-40 90-91v-273c0-50-40-90-90-90zM910 910h-227v-227h227v227z" />
+                    </StackPanel>
+                    <TextBlock Grid.Row="2" Text="THIRD-PARTY BUILD" Foreground="{DynamicResource AppTextMutedBrush}" FontSize="9" Margin="18,0,0,20" />
+                </Grid>
+
+                <Grid x:Name="PanCanvas" Grid.Row="1" Grid.Column="1" ClipToBounds="True">
+                    <Canvas x:Name="ImgBack" IsHitTestVisible="False" RenderOptions.BitmapScalingMode="LowQuality"
+                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                    <Grid x:Name="PanLeft" HorizontalAlignment="Left" SnapsToDevicePixels="True" Panel.ZIndex="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle x:Name="RectLeftBackground" Width="0" Fill="{DynamicResource AppSurfaceMutedBrush}" IsHitTestVisible="False" />
+                        <Rectangle x:Name="RectLeftShadow" Width="1" HorizontalAlignment="Left" IsHitTestVisible="False" Grid.Column="1" Fill="{DynamicResource AppBorderBrush}" />
+                    </Grid>
+                    <Grid x:Name="PanMain" HorizontalAlignment="Left" VerticalAlignment="Top" Panel.ZIndex="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.IsSharedSizeScope="True" UseLayoutRounding="True" SnapsToDevicePixels="True">
+                            <Border x:Name="PanMainLeft" Padding="10,16,10,16" RenderOptions.BitmapScalingMode="NearestNeighbor" UseLayoutRounding="False" SnapsToDevicePixels="False" />
+                        </Border>
+                        <Border Grid.Column="1" Grid.IsSharedSizeScope="True" UseLayoutRounding="True" SnapsToDevicePixels="True" Background="Transparent">
+                            <Border x:Name="PanMainRight" Padding="16,16,16,14" RenderOptions.BitmapScalingMode="NearestNeighbor" UseLayoutRounding="False" SnapsToDevicePixels="False" />
+                        </Border>
+                    </Grid>
+                </Grid>
+
+                <StackPanel x:Name="PanHint" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="24,0,0,24" Panel.ZIndex="30" />
+                <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="18" Panel.ZIndex="30">
+                    <local:MyExtraButton x:Name="BtnExtraBack" HorizontalAlignment="Right" ToolTip="返回顶部" Visibility="Collapsed" Logo="M858.496 188.9024 173.1072 188.9024c-30.2848 0-54.8352-24.5504-54.8352-54.8352L118.272 106.6496c0-30.2848 24.5504-54.8352 54.8352-54.8352l685.3888 0c30.2848 0 54.8352 24.5504 54.8352 54.8352l0 27.4176C913.3312 164.352 888.7808 188.9024 858.496 188.9024L858.496 188.9024z" />
+                    <local:MyExtraButton x:Name="BtnExtraDownload" HorizontalAlignment="Right" ToolTip="任务管理" Visibility="Collapsed" LogoScale="1.05" Logo="M484.693 225.28 314.027 389.12l-68.267-68.267c-13.653-13.653-40.96-13.653-47.787 0-13.653 13.654-13.653 34.134 0 47.787l95.574 95.573c13.653 13.654 34.133 13.654 47.786 0L532.48 273.067c13.653-13.654 13.653-34.134 0-47.787s-34.133-13.653-47.787 0M819.2 341.333H614.4c-20.48 0-34.133 13.654-34.133 34.134S593.92 409.6 614.4 409.6h204.8c20.48 0 34.133-13.653 34.133-34.133s-13.653-34.134-34.133-34.134" />
+                    <local:MyExtraButton x:Name="BtnExtraApril" HorizontalAlignment="Right" ToolTip="投降" Visibility="Collapsed" Logo="M124.96 32c-28.64 0-60.064 23.2-60.064 51.904v856.192c0 28.576 30.688 51.904 59.296 51.904s60.064-23.328 60.064-51.904V83.904C184.256 55.2 153.536 32 124.96 32z" />
+                    <local:MyExtraButton x:Name="BtnExtraShutdown" HorizontalAlignment="Right" ToolTip="关闭 Minecraft" Visibility="Collapsed" Logo="M802.152 143.682c31.236 22.212 59.004 47.379 83.297 75.486 24.297 28.116 45.12 58.481 62.472 91.105 17.356 32.624 30.543 67.159 39.569 103.6 9.023 36.442 13.533 73.403 13.533 110.887 0 64.556-12.32 125.116-36.96 181.69" />
+                    <local:MyExtraButton x:Name="BtnExtraMusic" HorizontalAlignment="Right" Visibility="Collapsed" CanRightClick="True" />
+                </StackPanel>
+
+                <Grid x:Name="PanMsg" Grid.RowSpan="2" Grid.ColumnSpan="2" Background="#660B1220" Visibility="Collapsed" Panel.ZIndex="100" />
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

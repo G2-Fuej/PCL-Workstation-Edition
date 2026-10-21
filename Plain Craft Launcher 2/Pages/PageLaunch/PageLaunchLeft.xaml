@@ -1,0 +1,157 @@
+<local:MyPageLeft x:Class="PageLaunchLeft"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                  xmlns:local="clr-namespace:PCL"
+                  mc:Ignorable="d" x:Name="PanBack"
+                  d:DesignHeight="620" d:DesignWidth="340" Width="340">
+    <Grid Name="PanInput" RenderTransformOrigin="0.5,0.5" Margin="0,0,0,4">
+        <Grid.RenderTransform>
+            <TransformGroup>
+                <ScaleTransform x:Name="AprilScaleTrans" />
+                <TranslateTransform x:Name="AprilPosTrans" />
+            </TransformGroup>
+        </Grid.RenderTransform>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="8,0,8,18">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <StackPanel>
+                <TextBlock Text="PLAY" FontSize="10" FontWeight="SemiBold" Foreground="{DynamicResource AppTealBrush}" />
+                <TextBlock Text="Ready to play" FontSize="26" FontWeight="SemiBold" Margin="0,2,0,0" Foreground="{DynamicResource AppTextBrush}" />
+                <TextBlock Text="选择实例与账户，然后进入世界" FontSize="12" Foreground="{DynamicResource AppTextMutedBrush}" Margin="0,3,0,0" />
+            </StackPanel>
+            <Border Grid.Column="1" Background="{DynamicResource AppTealSoftBrush}" CornerRadius="12" Padding="10,5" VerticalAlignment="Top" Margin="0,8,0,0">
+                <TextBlock Text="LOCAL" FontSize="9" FontWeight="Bold" Foreground="{DynamicResource AppTealBrush}" />
+            </Border>
+        </Grid>
+
+        <Border Grid.Row="1" Margin="8,0,8,14" Background="{DynamicResource AppSurfaceBrush}" BorderBrush="{DynamicResource AppBorderBrush}" BorderThickness="1" CornerRadius="9" Padding="18,16">
+            <StackPanel>
+                <Grid Margin="0,0,0,12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <TextBlock Text="CURRENT INSTANCE" FontSize="9" FontWeight="SemiBold" Foreground="{DynamicResource AppTextMutedBrush}" />
+                        <TextBlock x:Name="LabVersion" Text="正在加载版本列表，请稍候" FontSize="15" FontWeight="SemiBold" Margin="0,4,0,0" Foreground="{DynamicResource AppTextBrush}" />
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                        <local:MyButton x:Name="BtnMore" Visibility="Collapsed" Height="30" MinWidth="82" Text="版本设置" Padding="10,0" Margin="0,0,7,0" />
+                        <local:MyButton x:Name="BtnVersion" Height="30" MinWidth="88" Text="切换版本" IsEnabled="False" Padding="10,0" />
+                    </StackPanel>
+                </Grid>
+                <Border Height="1" Background="{DynamicResource AppBorderBrush}" Margin="0,0,0,14" />
+                <Grid x:Name="PanType" Margin="0,0,0,12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="SIGN IN" FontSize="9" FontWeight="SemiBold" Foreground="{DynamicResource AppTextMutedBrush}" />
+                        <TextBlock Text="账户" FontSize="13" FontWeight="SemiBold" Margin="0,3,0,0" />
+                    </StackPanel>
+                    <local:MyRadioButton x:Name="RadioLoginType5" Grid.Column="1" Height="30" Padding="12,0" Margin="0,0,4,0" Text="正版" ColorType="Nav"
+                                         LogoScale="0.85" Logo="M511.488 95.184c35.310 22.517 95.184 55.780 167.340 84.438 75.738 29.681 148.406 40.940 191.392 45.033v353.615c0 73.691-50.663 164.782-136.124 244.102C649.659 901.181 558.569 942.121 512 942.121c-46.569 0-137.659-40.940-222.097-119.748C204.442 742.541 153.779 651.450 153.779 577.247V224.144c42.475-4.094 116.166-15.352 191.904-45.545 75.226-30.193 133.565-63.456 165.805-83.414M512 0c-4.094 0-8.188 1.535-11.258 3.582l-14.841 10.235c-1.023.512-67.550 47.592-170.411 88.532-100.814 39.916-198.557 41.963-199.580 41.963l-25.075.512c-10.747.512-18.935 8.188-18.935 18.423v414.001c0 216.980 286.065 446.241 440.100 446.241s440.100-229.261 440.100-445.729V163.758c0-10.235-8.700-18.423-18.935-18.423l-24.564-.512c-1.023 0-98.767-2.047-199.580-41.963-103.372-40.940-170.411-88.020-170.923-88.532L523.258 3.582C520.188 1.023 516.094 0 512 0z" />
+                    <local:MyRadioButton x:Name="RadioLoginType0" Grid.Column="2" Height="30" Padding="12,0" Text="离线" ColorType="Nav"
+                                         LogoScale="0.78" Logo="M533.293 788.841a60.235 60.235 0 1 1 85.203 85.203l-42.616 42.586c-129.355 129.385-339.125 129.385-468.510 0-129.385-129.385-129.385-339.125 0-468.510l42.586-42.616a60.235 60.235 0 1 1 85.203 85.203l-42.616 42.586a210.824 210.824 0 1 0 298.164 298.165l42.586-42.617z m255.548-255.548l42.617-42.586a210.824 210.824 0 1 0-298.165-298.165l-42.586 42.617a60.235 60.235 0 1 1-85.203-85.203l42.617-42.586c129.355-129.386 339.124-129.386 468.510 0 129.385 129.385 129.385 339.124 0 468.510l-42.586 42.616a60.235 60.235 0 1 1-85.203-85.203zM192.542 192.542a60.235 60.235 0 0 1 85.203 0l553.713 553.713a60.235 60.235 0 0 1-85.203 85.203L192.542 277.745a60.235 60.235 0 0 1 0-85.203z" />
+                </Grid>
+                <Grid x:Name="PanTypeOne" Visibility="Collapsed" Margin="0,0,0,12">
+                    <Border HorizontalAlignment="Left" Background="{DynamicResource AppTealSoftBrush}" CornerRadius="7" Padding="10,6">
+                        <StackPanel Orientation="Horizontal">
+                            <Path Name="PathTypeOne" Width="16" Height="16" Stretch="Uniform" Fill="{DynamicResource AppTealBrush}" VerticalAlignment="Center" />
+                            <TextBlock Name="LabTypeOne" Margin="8,0,0,0" VerticalAlignment="Center" FontSize="12" FontWeight="SemiBold" Foreground="{DynamicResource AppTealBrush}" />
+                        </StackPanel>
+                    </Border>
+                </Grid>
+                <Grid x:Name="PanLogin" MinHeight="180" Margin="0,0,0,4" />
+            </StackPanel>
+        </Border>
+
+        <Grid Grid.Row="2" Margin="8,0,8,14">
+            <local:MyButton x:Name="BtnLaunch" Height="58" Text="正在加载" ColorType="Highlight" Padding="30,0,30,16" IsEnabled="False" />
+            <TextBlock Text="启动后窗口将自动切换到游戏" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,9" FontSize="10.5" Foreground="#C8FFFFFF" IsHitTestVisible="False" />
+        </Grid>
+
+        <Grid Grid.Row="3" Margin="8,0,8,4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="选择实例、验证账户，然后按下启动。现有世界与设置不会被修改。" FontSize="10.5" Foreground="{DynamicResource AppTextMutedBrush}" TextWrapping="Wrap" Margin="0,0,12,0" />
+            <TextBlock Grid.Column="1" Text="PCL ENGINE" FontSize="9" FontWeight="SemiBold" Foreground="{DynamicResource AppTextMutedBrush}" VerticalAlignment="Top" />
+        </Grid>
+        <Grid Grid.Row="4" Height="12" />
+    </Grid>
+
+    <Grid Name="PanLaunching" RenderTransformOrigin="0.5,0.5" Visibility="Collapsed" Opacity="0">
+        <Grid.RenderTransform>
+            <ScaleTransform ScaleX="0.94" ScaleY="0.94" />
+        </Grid.RenderTransform>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Margin="16,8,16,24">
+            <TextBlock Text="LAUNCHING" FontSize="10" FontWeight="SemiBold" Foreground="{DynamicResource AppTealBrush}" />
+            <TextBlock Name="LabLaunchingTitle" Margin="0,4,0,0" Text="正在启动游戏" FontSize="25" FontWeight="SemiBold" Foreground="{DynamicResource AppTextBrush}" />
+            <TextBlock Name="LabLaunchingName" Margin="0,5,0,0" FontSize="12.5" Text="Forge 1.12.2-15.8.0.1560" Foreground="{DynamicResource AppTextMutedBrush}" />
+        </StackPanel>
+        <Border Grid.Row="1" Margin="16,0,16,16" Background="{DynamicResource AppSurfaceBrush}" BorderBrush="{DynamicResource AppBorderBrush}" BorderThickness="1" CornerRadius="9" Padding="18">
+            <StackPanel VerticalAlignment="Center">
+                <local:MyLoading x:Name="LoadLaunching" AutoRun="False" Height="50" Margin="0,0,0,10" />
+                <Grid Height="4" Margin="0,8,0,22" SnapsToDevicePixels="True">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Name="ProgressLaunchingFinished" Width="69*" />
+                        <ColumnDefinition Name="ProgressLaunchingUnfinished" Width="31*" />
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" CornerRadius="2" Background="{DynamicResource AppTealBrush}" />
+                    <Border Grid.Column="1" CornerRadius="2" Background="{DynamicResource AppBorderBrush}" />
+                </Grid>
+                <Grid HorizontalAlignment="Stretch" Name="PanLaunchingInfo">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="18" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock FontSize="11.5" Margin="0,0,0,6" Text="当前步骤" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Foreground="{DynamicResource AppTextMutedBrush}" />
+                    <TextBlock FontSize="11.5" Margin="0,0,0,6" Text="下载支持" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Left" Name="LabLaunchingStage" />
+                    <TextBlock FontSize="11.5" Margin="0,0,0,6" Text="登录方式" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" Foreground="{DynamicResource AppTextMutedBrush}" />
+                    <TextBlock FontSize="11.5" Margin="0,0,0,6" Text="正版登录" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Left" Name="LabLaunchingMethod" />
+                    <TextBlock FontSize="11.5" Margin="0,0,0,6" Text="启动进度" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" Foreground="{DynamicResource AppTextMutedBrush}" Name="LabLaunchingProgressLeft" />
+                    <TextBlock FontSize="11.5" Margin="0,0,0,6" Text="0.00 %" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Left" Name="LabLaunchingProgress" />
+                    <TextBlock FontSize="11.5" Margin="0,0,0,6" Text="下载速度" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right" Foreground="{DynamicResource AppTextMutedBrush}" Name="LabLaunchingDownloadLeft" Visibility="Collapsed" />
+                    <TextBlock FontSize="11.5" Margin="0,0,0,6" Text="0 B/s" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Left" Name="LabLaunchingDownload" Visibility="Collapsed" />
+                </Grid>
+                <Border x:Name="PanLaunchingHint" Margin="0,16,0,0" Padding="12" Background="{DynamicResource AppTealSoftBrush}" CornerRadius="7" Visibility="Collapsed" Opacity="0">
+                    <StackPanel>
+                        <TextBlock FontSize="10" FontWeight="SemiBold" Text="DID YOU KNOW" Foreground="{DynamicResource AppTealBrush}" />
+                        <TextBlock x:Name="LabLaunchingHint" FontSize="11.5" Text="这是一段测试用的小提示文本。" Margin="0,5,0,0" TextWrapping="Wrap" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+        <local:MyButton Grid.Row="3" x:Name="BtnCancel" Height="38" Margin="16,0,16,16" Text="取消启动" />
+    </Grid>
+</local:MyPageLeft>
