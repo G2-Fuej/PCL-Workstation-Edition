@@ -33,9 +33,6 @@
         <Rectangle x:Name="ResizerRT" HorizontalAlignment="Right" Stroke="{x:Null}" Width="13" StrokeThickness="0.0001" VerticalAlignment="Top" Height="13" Cursor="SizeNESW" />
 
         <Border Margin="8" x:Name="BorderForm" Background="{DynamicResource AppBackgroundBrush}" BorderBrush="{DynamicResource AppBorderBrush}" BorderThickness="1" CornerRadius="12">
-            <Border.Effect>
-                <DropShadowEffect Color="#2A172033" BlurRadius="28" ShadowDepth="6" Opacity="0.20" />
-            </Border.Effect>
             <Border.Clip>
                 <RectangleGeometry x:Name="RectForm" RadiusX="12" RadiusY="12" />
             </Border.Clip>

@@ -36,7 +36,7 @@
             </Border>
         </Grid>
 
-        <Border Grid.Row="1" Margin="8,0,8,14" Background="{DynamicResource AppSurfaceBrush}" BorderBrush="{DynamicResource AppBorderBrush}" BorderThickness="1" CornerRadius="9" Padding="18,16">
+        <Border x:Name="CardLaunchSetup" Grid.Row="1" Margin="8,0,8,14" Background="{DynamicResource AppSurfaceBrush}" BorderBrush="{DynamicResource AppBorderBrush}" BorderThickness="1" CornerRadius="9" Padding="18,16">
             <StackPanel>
                 <Grid Margin="0,0,0,12">
                     <Grid.ColumnDefinitions>

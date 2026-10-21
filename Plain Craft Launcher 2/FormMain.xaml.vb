@@ -677,7 +677,7 @@ Public Class FormMain
         '背景图片透明度
         ImgBack.Opacity = Settings.Get(Of Integer)("UiBackgroundOpacity") / 1000
         '背景图片模糊
-        Dim BlurRadius As Double = Settings.Get(Of Integer)("UiBackgroundBlur") + 1
+        Dim BlurRadius As Double = Math.Min(Settings.Get(Of Integer)("UiBackgroundBlur"), 12) + 1
         If BlurRadius = 1 Then
             ImgBack.Effect = Nothing
         Else

@@ -768,6 +768,7 @@ Public Module ModAnimation
             AniStop(Name)
         End If
         AniGroups.Add(Name, NewEntry)
+        Interlocked.Exchange(_AniHasWork, 1)
     End Sub
     ''' <summary>
     ''' 开始一个动画组。
@@ -781,6 +782,7 @@ Public Module ModAnimation
     ''' <param name="name">需要停止的动画组的名称。</param>
     Public Sub AniStop(Name As String)
         AniGroups.Remove(Name)
+        If AniGroups.Count = 0 Then Interlocked.Exchange(_AniHasWork, 0)
     End Sub
     ''' <summary>
     ''' 获取动画是否正在进行中。
@@ -794,6 +796,8 @@ Public Module ModAnimation
     Private AniCount As Integer = 0
     Private AniFPSCounter As Integer = 0
     Private AniFPSTimer As Long = 0
+    Private _AniHasWork As Integer
+    Private Const AniFrameIntervalMs As Integer = 10
     ''' <summary>
     ''' 当前的动画 FPS。
     ''' </summary>
@@ -815,8 +819,12 @@ Public Module ModAnimation
                 Do While True
                     '两帧之间的间隔时间
                     Dim DeltaTime As Long = (GetTimeMs() - AniLastTick).Clamp(0, 100000)
-                    If DeltaTime < 3 Then GoTo Sleeper
+                    If DeltaTime < AniFrameIntervalMs Then GoTo Sleeper
                     AniLastTick = GetTimeMs()
+                    If Interlocked.CompareExchange(_AniHasWork, 0, 0) = 0 Then
+                        Thread.Sleep(8)
+                        Continue Do
+                    End If
                     '记录 FPS
                     If ModeDebug Then
                         If (AniLastTick - AniFPSTimer).Clamp(0, 100000) >= 500 Then
@@ -912,6 +920,7 @@ NextAni:
                     For Current = 0 To AniGroups.Count - 1
                         If AniGroups.ElementAt(Current).Value.Uuid = Entry.Uuid Then
                             AniGroups.Remove(AniGroups.ElementAt(Current).Key)
+                            If AniGroups.Count = 0 Then Interlocked.Exchange(_AniHasWork, 0)
                             Exit For
                         End If
                     Next
